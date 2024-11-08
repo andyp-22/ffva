@@ -1,6 +1,6 @@
-# ff-vialias README
+# ffva README
 
-This is the README for your extension "ff-vialias". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "ffva". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
@@ -18,14 +18,11 @@ If you have any requirements or dependencies, add a section describing those and
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes the following settings through the `contributes.configuration` extension point:
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `ffva.config.aliases`: Enable/disable this extension.
+* `ffva.config.autoClean...`: Enables or disables the automatic clean-up of aliases on file delete.
+* `ffva.config.autoUpdate...`: Enables or disables the automatic update of aliases on file rename or move.
 
 ## Known Issues
 
