@@ -1,4 +1,5 @@
 import { workspace, ConfigurationTarget, QuickPickItem } from "vscode";
+import { AliasesConfigProperty } from "./constants";
 
 /*
  * Alias entry interface.
@@ -32,18 +33,12 @@ export class AliasItem implements QuickPickItem {
 }
 
 /*
- * Configuration property name for alias aliases array.
- * Represents the hierarchical property in configuration where alias aliases are stored.
- */
-const AliasEntriesConfigProperty = "ffva.config.aliases";
-
-/*
  * Helper function to wrap retrieving the alias entries array from configuration.
  */
 export function getConfiguredAliases(): AliasEntry[] {
   const aliases = workspace
     .getConfiguration()
-    .get<AliasEntry[]>(AliasEntriesConfigProperty, []);
+    .get<AliasEntry[]>(AliasesConfigProperty, []);
   console.log("[FFVA] Successfully retrieved alias entries from configuration");
   return aliases;
 }
@@ -58,7 +53,7 @@ export async function updateConfiguredAliases(
     await workspace
       .getConfiguration()
       .update(
-        AliasEntriesConfigProperty,
+        AliasesConfigProperty,
         updates,
         ConfigurationTarget.Workspace
       );

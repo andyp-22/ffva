@@ -1,31 +1,18 @@
 import { commands, window, workspace, Disposable } from "vscode";
-import {
-  ExtensionLogger,
-  ActionTypes,
-  setInfoStatus,
-  setErrorStatus,
-} from "./helpers";
-import {
-  getConfiguredAliases,
-  updateConfiguredAliases,
-  AliasEntry,
-  AliasItem,
-} from "./aliases";
-
-const CreateAliasCommandName = "extension.createAlias";
-const RemoveAliasCommandName = "extension.removeAlias";
-const FindFileViaAliasCommandName = "extension.findFileViaAlias";
-const PurgeAliasesCommandName = "extension.purgeAliases";
+import { setInfoStatus, setErrorStatus } from "./helpers";
+import { getConfiguredAliases, updateConfiguredAliases, AliasEntry, AliasItem } from "./aliases";
+import { CreateAliasCommand, RemoveAliasCommand, PurgeAliasesCommand, FindFileViaAliasCommand } from "./constants";
+import * as extl from "./logger";
 
 /*
  * Command: Adds a new alias entry into configuration for the current workspace.
  * The new alias will be associated with the file document from the currently active text-editor window.
  */
 export function createAliasCommand() {
-  return commands.registerCommand(CreateAliasCommandName, async () => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Command,
-      CreateAliasCommandName,
+  return commands.registerCommand(CreateAliasCommand, async () => {
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Command,
+      CreateAliasCommand,
       "createAliasCommand"
     );
     logger.beginExecutionLog();
@@ -78,10 +65,10 @@ export function createAliasCommand() {
  * Command: Removes an existing alias entry from configuration for the current workspace.
  */
 export function removeAliasCommand() {
-  return commands.registerCommand(RemoveAliasCommandName, async () => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Command,
-      RemoveAliasCommandName,
+  return commands.registerCommand(RemoveAliasCommand, async () => {
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Command,
+      RemoveAliasCommand,
       "removeAliasCommand"
     );
     logger.beginExecutionLog();
@@ -179,10 +166,10 @@ function aliasNameExists(aliases: AliasEntry[], alias: string): boolean {
  * Command: Allows the user to purge all of the alias entries from the array in configuration.
  */
 export function purgeAliasesCommand() {
-  return commands.registerCommand(PurgeAliasesCommandName, async () => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Command,
-      PurgeAliasesCommandName,
+  return commands.registerCommand(PurgeAliasesCommand, async () => {
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Command,
+      PurgeAliasesCommand,
       "purgeAliasesCommand"
     );
     logger.beginExecutionLog();
@@ -236,10 +223,10 @@ export function purgeAliasesCommand() {
  * Command: Finds and opens a file in the current workspace using an existing alias entry.
  */
 export function findFileViaAliasCommand() {
-  return commands.registerCommand(FindFileViaAliasCommandName, async () => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Command,
-      FindFileViaAliasCommandName,
+  return commands.registerCommand(FindFileViaAliasCommand, async () => {
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Command,
+      FindFileViaAliasCommand,
       "findFileViaAliasCommand"
     );
     logger.beginExecutionLog();

@@ -1,38 +1,19 @@
-import {
-  Disposable,
-  ConfigurationTarget,
-  FileDeleteEvent,
-  commands,
-  window,
-  workspace,
-} from "vscode";
-import {
-  ExtensionLogger,
-  ActionTypes,
-  setInfoStatus,
-  setWarningStatus,
-  setErrorStatus,
-} from "./helpers";
-import {
-  getConfiguredAliases,
-  updateConfiguredAliases,
-  AliasEntry,
-} from "./aliases";
-
-const AutoCleanAliasesConfigProperty = "ffva.config.autoCleanOnFileDelete";
-const ConfigAutoCleanAliasesCommandName =
-  "extension.configAutoCleanOnFileDelete";
+import { Disposable, ConfigurationTarget, FileDeleteEvent, commands, window, workspace } from "vscode";
+import { setInfoStatus, setWarningStatus, setErrorStatus } from "./helpers";
+import { getConfiguredAliases, updateConfiguredAliases, AliasEntry } from "./aliases";
+import { DoAutoCleanConfigProperty, ConfigAutoCleanCommand } from "./constants";
+import * as extl from "./logger";
 
 /*
  * Command: Allows the user to enable or disable the automatic clean up of alias entries on FileDeleteEvent events.
  */
 export function autoCleanConfigCommand() {
   return commands.registerCommand(
-    ConfigAutoCleanAliasesCommandName,
+    ConfigAutoCleanCommand,
     async () => {
-      const logger = new ExtensionLogger(
-        ActionTypes.Command,
-        ConfigAutoCleanAliasesCommandName,
+      const logger = new extl.ExtensionLogger(
+        extl.ActionTypes.Command,
+        ConfigAutoCleanCommand,
         "autoCleanConfigCommand"
       );
       logger.beginExecutionLog();
@@ -80,7 +61,7 @@ export function autoCleanConfigCommand() {
           await workspace
             .getConfiguration()
             .update(
-              AutoCleanAliasesConfigProperty,
+              DoAutoCleanConfigProperty,
               value.target,
               target.target
             );
@@ -117,8 +98,8 @@ export function autoCleanConfigCommand() {
  */
 export function autoCleanHandler() {
   return workspace.onDidDeleteFiles(async (fileDeleteEvent) => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Handler,
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Handler,
       "FileDeleteEventHandler",
       "autoCleanHandler"
     );
@@ -128,7 +109,7 @@ export function autoCleanHandler() {
       // Check whether or not the feature is enabled.
       const featureEnabled = workspace
         .getConfiguration()
-        .get<boolean>(AutoCleanAliasesConfigProperty, false);
+        .get<boolean>(DoAutoCleanConfigProperty, false);
 
       if (featureEnabled) {
         logger.log("Processing event...");
