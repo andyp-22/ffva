@@ -9,6 +9,9 @@ Note: Release dates throughout follow the format `dd.MM.yyyy`.
 
 ## [Unreleased]
 
+## Changed
+- v0.1.x Fixed .vsix entry in the .gitignore
+
 ## [v0.1.1] - 12.11.2024
 
 ### Changed
