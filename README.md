@@ -40,7 +40,7 @@ This extension includes the following default command shortcuts, which aim to in
   * **Use from**: Anywhere within a valid workspace with custom-defined aliases.
   * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in and/or select an alias from the dynamically updating list. Selecting an alias removes it from the workspace settings (does NOT remove files). 
 
-All commands implemented by this extension, including those with shortcuts above, can be found by searching for `FFVA` in the Visual Studio Command palette (`ctrl + shift + p`).
+All commands implemented by this extension, including those with shortcuts above, can be found by searching for `FFVA` in the Visual Studio Code command palette (`ctrl + shift + p`).
 
 
 ## Extension Settings
