@@ -2,7 +2,7 @@
   "name": "ffva",
   "displayName": "FFVA",
   "description": "Find File Via Alias. Find and open files in a workspace using custom user-defined aliases.",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "publisher": "andy-parrett",
   "author": {
     "name": "Andrew Parrett"
