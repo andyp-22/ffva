@@ -9,7 +9,10 @@ and this project's versioning adheres to [Semantic Versioning](https://semver.or
 
 ### Added
 - v0.0.1 Initial repo set up
-- v0.0.1 Updating package.json, README.md, CHANGELOG.md, and other important supporting items.
+- v0.0.1 Added CHANGELOG.md
+- v0.0.1 Added README.md
+- v0.0.1 Added LICENSE document with standard MIT license and copyright.
+- v0.0.1 Added package.json and other important supporting documents.
 - v0.0.1 Command to create a new alias.
 - v0.0.1 Command to remove an existing alias.
 - v0.0.1 Command to find and open a file using an existing alias.
