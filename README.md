@@ -8,7 +8,7 @@ and use these aliases to quickly find and open files within a workspace!
 
 ## Features
 This extension includes the following features:
-* Define your own custom aliases.
+* Define your own custom aliases for files.
   * When a new alias is created, it will be associated with the currently-active document in your editor.
 * Quickly and intuitively find and open files using your custom-defined aliases.
 * The ability to manage your custom-defined aliases, per-workspace.
@@ -46,13 +46,13 @@ All commands implemented by this extension, including those with shortcuts above
 ## Extension Settings
 This extension contributes the following settings through the `contributes.configuration` extension point:
 
-* `ffva.config.aliases`: Enable/disable this extension.
-* `ffva.config.autoClean...`: Enables or disables the automatic clean-up of aliases on file delete.
-* `ffva.config.autoUpdate...`: Enables or disables the automatic update of aliases on file rename or move.
+* `ffva.config.aliases`: An array of items, each representing an alias associated with a corresponding file.
+* `ffva.config.doAutoClean`: Enables or disables the automatic clean-up of aliases on file delete.
+* `ffva.config.doAutoUpdate`: Enables or disables the automatic update of aliases on file rename or move.
 
 
 ## Known Issues
-Super clean!
+No known issues as of writing.
 
 
 ## Release Notes

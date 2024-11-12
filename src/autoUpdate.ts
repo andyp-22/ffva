@@ -1,37 +1,19 @@
-import {
-  commands,
-  window,
-  workspace,
-  ConfigurationTarget,
-  FileRenameEvent,
-  Disposable,
-} from "vscode";
-import {
-  ExtensionLogger,
-  ActionTypes,
-  setInfoStatus,
-  setErrorStatus,
-} from "./helpers";
-import {
-  getConfiguredAliases,
-  updateConfiguredAliases,
-  AliasEntry,
-} from "./aliases";
-
-const AutoUpdateAliasesConfigProperty = "ffva.config.autoUpdateOnFileRename";
-const ConfigAutoUpdateAliasesCommandName =
-  "extension.configAutoUpdateOnFileRename";
+import { commands,  window, workspace, ConfigurationTarget, FileRenameEvent, Disposable } from "vscode";
+import { setInfoStatus, setErrorStatus } from "./helpers";
+import { getConfiguredAliases, updateConfiguredAliases, AliasEntry } from "./aliases";
+import { DoAutoUpdateConfigProperty, ConfigAutoUpdateCommand } from "./constants";
+import * as extl from "./logger";
 
 /*
  * Command: Allows the user to enable or disable the automatic update of alias entries on FileRenameEvent events.
  */
 export function autoUpdateConfigCommand() {
   return commands.registerCommand(
-    ConfigAutoUpdateAliasesCommandName,
+    ConfigAutoUpdateCommand,
     async () => {
-      const logger = new ExtensionLogger(
-        ActionTypes.Command,
-        ConfigAutoUpdateAliasesCommandName,
+      const logger = new extl.ExtensionLogger(
+        extl.ActionTypes.Command,
+        ConfigAutoUpdateCommand,
         "autoUpdateConfigCommand"
       );
       logger.beginExecutionLog();
@@ -78,7 +60,7 @@ export function autoUpdateConfigCommand() {
           await workspace
             .getConfiguration()
             .update(
-              AutoUpdateAliasesConfigProperty,
+              DoAutoUpdateConfigProperty,
               value.target,
               target.target
             );
@@ -115,8 +97,8 @@ export function autoUpdateConfigCommand() {
  */
 export function autoUpdateHandler() {
   return workspace.onDidRenameFiles(async (fileRenameEvent) => {
-    const logger = new ExtensionLogger(
-      ActionTypes.Handler,
+    const logger = new extl.ExtensionLogger(
+      extl.ActionTypes.Handler,
       "FileRenameEventHandler",
       "autoUpdateHandler"
     );
@@ -126,7 +108,7 @@ export function autoUpdateHandler() {
       // Check whether or not the feature is enabled.
       const featureEnabled = workspace
         .getConfiguration()
-        .get<boolean>(AutoUpdateAliasesConfigProperty, false);
+        .get<boolean>(DoAutoUpdateConfigProperty, false);
       if (featureEnabled) {
         logger.log("Feature enabled. Processing event...");
         const aliases = getConfiguredAliases();

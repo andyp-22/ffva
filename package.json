@@ -4,6 +4,14 @@
   "description": "Find File Via Alias. Find and open files in a workspace using custom user-defined aliases.",
   "version": "0.0.1",
   "publisher": "andy-parrett",
+  "author": {
+    "name": "Andrew Parrett"
+  },
+  "license": "MIT",
+  "galleryBanner": {
+    "color": "#66348a",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -30,7 +38,7 @@
         "properties": {
           "ffva.config.aliases": {
             "title": "File Aliases",
-            "description": "Array of items, each item representing an alias associated with a corresponding file.",
+            "description": "Array of items, each representing an alias associated with a corresponding file.",
             "type": "array",
             "items": {
               "title": "Alias",
@@ -79,14 +87,14 @@
             "default": [],
             "scope": "window"
           },
-          "ffva.config.autoCleanOnFileDelete": {
+          "ffva.config.doAutoClean": {
             "title": "Auto-clean Aliases on File Delete",
             "description": "Configures automatic clean-up of aliases on file deletes.",
             "type": "boolean",
             "default": true,
             "scope": "window"
           },
-          "ffva.config.autoUpdateOnFileRename": {
+          "ffva.config.doAutoUpdate": {
             "title": "Auto-update Aliases on File Rename/Move",
             "description": "Configures automatic updates of aliases on file rename or move.",
             "type": "boolean",
@@ -119,12 +127,12 @@
       },
       {
         "category": "FFVA Config",
-        "command": "extension.configAutoCleanOnFileDelete",
-        "title": "Enable or Disable automatic clean-up of aliases on file deletes."
+        "command": "extension.configAutoClean",
+        "title": "Enable or Disable automatic clean-up of aliases on file delete."
       },
       {
         "category": "FFVA Config",
-        "command": "extension.configAutoUpdateOnFileRename",
+        "command": "extension.configAutoUpdate",
         "title": "Enable or Disable automatic updates of aliases on file rename or move."
       }
     ],
@@ -144,6 +152,8 @@
     ]
   },
   "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish -p",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
@@ -152,14 +162,15 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.95.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
+    "@types/vscode": "^1.95.0",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.7.0",
-    "eslint": "^9.13.0",
-    "typescript": "^5.6.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.1",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3"
   }
 }
