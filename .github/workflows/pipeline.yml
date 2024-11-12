@@ -39,9 +39,9 @@ jobs:
       - name: Run - Test
         run: xvfb-run -a npm run test
 
-      # Conditionally publish the package automatically if release
-      # - name: Publish
-      #   if: success() && startsWith(github.ref, 'refs/tags/')
-      #   run: npm run publish
-      #   env:
-      #     VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      # Conditionally publish the package automatically if release created
+      - name: Publish
+        if: success() && startsWith(github.ref, 'refs/tags/')
+        run: npm run publish
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
