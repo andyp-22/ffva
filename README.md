@@ -7,16 +7,18 @@ and use these aliases to quickly find and open files within a workspace!
 
 
 ## Features
-This extension includes the following features:
-* Define your own custom aliases for files.
-  * When a new alias is created, it will be associated with the currently-active document in your editor.
-* Quickly and intuitively find and open files using your custom-defined aliases.
-* The ability to manage your custom-defined aliases, per-workspace.
-  * Existing aliases can be removed individually, or purged all at once for the entire workspace.
-* QOL features to ensure that your aliases remain intact or are cleaned-up when files change, and the freedom to toggle these features on or off per-workspace.
-  * Automatic updates: When enabled, this extension will automatically update existing aliases anytime their corresponding file is renamed or moved.
-  * Automatic clean-up: When enabled, this extension will automatically remove existing aliases when their corresponding file is deleted.
+This extension includes the following...
 
+**Core Features**:
+* Create custom aliases to files in your workspace.
+* Use a custom alias to find and open the associated file within your workspace.
+* Individually remove existing custom aliases for your workspace.
+* Purge all existing custom aliases for your workspace.
+
+
+**Optional QOL Feautres** (enabled by default):
+* **Automatic updates**: When enabled, will automatically update existing aliases when their respective associated file is renamed or moved
+* **Automatic clean-up**: When enabled, will automatically remove existing aliases when their respective associated file is deleted.
 
 ## Usage
 This extension includes the following default command shortcuts, which aim to intuitively extend the core Visual Studio Code 'Quick Open' command that we're already familiar with.
@@ -56,7 +58,7 @@ No known issues as of writing.
 
 
 ## Release Notes
-- v0.0.1 This extension is unreleased.
+Release notes can be found in the [CHANGELOG.md](CHANGELOG.md) file.
 
 
 ## License
