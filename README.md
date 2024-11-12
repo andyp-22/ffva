@@ -1,13 +1,12 @@
 # FFVA (Find File Via Alias)
 ### Extension for Visual Studio Code
-
 Do you ever find yourself working in large or unruly repositories, and/or frequently having to locate important documents with equally large or unruly file names?? 
 
 Introducing FFVA (Find File Via Alias), a simple extension to solve a simple problem; Define your own easy-to-remember aliases for commonly used files,
 and use these aliases to quickly find and open files within a workspace!
 
-## Features
 
+## Features
 This extension includes the following features:
 * Define your own custom aliases.
   * When a new alias is created, it will be associated with the currently-active document in your editor.
@@ -18,52 +17,47 @@ This extension includes the following features:
   * Automatic updates: When enabled, this extension will automatically update existing aliases anytime their corresponding file is renamed or moved.
   * Automatic clean-up: When enabled, this extension will automatically remove existing aliases when their corresponding file is deleted.
 
-## Usage
 
-This extension includes the following default command shortcuts, which aim to provide an intuitive extension to the core Visual Studio Code 'Quick Open' command that we're all familiar with.
+## Usage
+This extension includes the following default command shortcuts, which aim to intuitively extend the core Visual Studio Code 'Quick Open' command that we're already familiar with.
 
 * `ctrl + alt + p`:
   * **Command**: FindFileViaAlias
   * **Rationale**: Mimics the `ctrl + p` shortcut for 'Quick Open' for intuitive feel, with the inclusion of `alt`.
   * **Use from**: Anywhere within a valid workspace with custom-defined aliases.
-  * **Result**: Opens the Visual Studio Code command palette with no input, displays all aliases defined for the current workspace, and allows the user to type in an alias and/or select one from a list which dynamically updates with input. Selecting an alias opens the corresponding file in the editor.
+  * **Result**: Opens the Visual Studio Code command palette with no input, displays all custom aliases defined within the current workspace, and allows the user to type in and/or select an alias from the dynamically updating list. Selecting an alias opens the corresponding document in the editor.
  
 * `ctrl + alt + a`:
   * **Command**: CreateAlias
   * **Rationale**: Uses the same `ctrl + alt` prefix of inputs as the FindFileViaAlias shortcut, with the inclusion of `+ a` representative of 'alias'.
   * **Use from**: The document you wish to create an alias for, within any valid workspace.
-  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in a custom alias to associate with the currently acitve document. Typing in any valid input adds a new alias for the current document to the workspace settings.
+  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in a custom alias to associate with the currently active document. Typing in any valid input adds a new alias for the current document to the workspace settings.
 
  
 * `ctrl + alt + d`:
   * **Command**: RemoveAlias
   * **Rationale**: Uses the same `ctrl + alt` prefix of inputs as the FindFileViaAlias shortcut, with the inclusion of `+ d` representative of 'delete'.
   * **Use from**: Anywhere within a valid workspace with custom-defined aliases.
-  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in an alias and/or select one from a list which dynamically updates with input. Selecting an alias removes it from the workspace settings (does NOT remove files). 
+  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in and/or select an alias from the dynamically updating list. Selecting an alias removes it from the workspace settings (does NOT remove files). 
 
-These, and all other commands included in this extension, can be found by opening the Visual Studio Command palette using `ctrl + shift + p` and searching for `FFVA`.
+All commands implemented by this extension, including those with shortcuts above, can be found by searching for `FFVA` in the Visual Studio Command palette (`ctrl + shift + p`).
+
 
 ## Extension Settings
-
 This extension contributes the following settings through the `contributes.configuration` extension point:
 
 * `ffva.config.aliases`: Enable/disable this extension.
 * `ffva.config.autoClean...`: Enables or disables the automatic clean-up of aliases on file delete.
 * `ffva.config.autoUpdate...`: Enables or disables the automatic update of aliases on file rename or move.
 
-## Known Issues
 
+## Known Issues
 Super clean!
 
-## Release Notes
 
+## Release Notes
 - v0.0.1 This extension is unreleased.
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
 
 ## License
 Copyright (c) 2024 Andrew Parrett. All rights reserved.
