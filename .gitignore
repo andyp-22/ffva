@@ -8,6 +8,7 @@ nupkg/
 # Project-specific
 out
 node_modules
+.vsix
 
 # Rider
 .idea
