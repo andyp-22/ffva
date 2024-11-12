@@ -1,20 +1,47 @@
-# ffva README
+# FFVA (Find File Via Alias)
+### Extension for Visual Studio Code
 
-This is the README for your extension "ffva". After writing up a brief description, we recommend including the following sections.
+Do you ever find yourself working in large or unruly repositories, and/or frequently having to locate important documents with equally large or unruly file names?? 
+
+Introducing FFVA (Find File Via Alias), a simple extension to solve a simple problem; Define your own easy-to-remember aliases for commonly used files,
+and use these aliases to quickly find and open files within a workspace!
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension includes the following features:
+* Define your own custom aliases.
+  * When a new alias is created, it will be associated with the currently-active document in your editor.
+* Quickly and intuitively find and open files using your custom-defined aliases.
+* The ability to manage your custom-defined aliases, per-workspace.
+  * Existing aliases can be removed individually, or purged all at once for the entire workspace.
+* QOL features to ensure that your aliases remain intact or are cleaned-up when files change, and the freedom to toggle these features on or off per-workspace.
+  * Automatic updates: When enabled, this extension will automatically update existing aliases anytime their corresponding file is renamed or moved.
+  * Automatic clean-up: When enabled, this extension will automatically remove existing aliases when their corresponding file is deleted.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+This extension includes the following default command shortcuts, which aim to provide an intuitive extension to the core Visual Studio Code 'Quick Open' command that we're all familiar with.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+* `ctrl + alt + p`:
+  * **Command**: FindFileViaAlias
+  * **Rationale**: Mimics the `ctrl + p` shortcut for 'Quick Open' for intuitive feel, with the inclusion of `alt`.
+  * **Use from**: Anywhere within a valid workspace with custom-defined aliases.
+  * **Result**: Opens the Visual Studio Code command palette with no input, displays all aliases defined for the current workspace, and allows the user to type in an alias and/or select one from a list which dynamically updates with input. Selecting an alias opens the corresponding file in the editor.
+ 
+* `ctrl + alt + a`:
+  * **Command**: CreateAlias
+  * **Rationale**: Uses the same `ctrl + alt` prefix of inputs as the FindFileViaAlias shortcut, with the inclusion of `+ a` representative of 'alias'.
+  * **Use from**: The document you wish to create an alias for, within any valid workspace.
+  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in a custom alias to associate with the currently acitve document. Typing in any valid input adds a new alias for the current document to the workspace settings.
 
-## Requirements
+ 
+* `ctrl + alt + d`:
+  * **Command**: RemoveAlias
+  * **Rationale**: Uses the same `ctrl + alt` prefix of inputs as the FindFileViaAlias shortcut, with the inclusion of `+ d` representative of 'delete'.
+  * **Use from**: Anywhere within a valid workspace with custom-defined aliases.
+  * **Result**: Opens the Visual Studio Code command palette with no input, and allows the user to type in an alias and/or select one from a list which dynamically updates with input. Selecting an alias removes it from the workspace settings (does NOT remove files). 
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+These, and all other commands included in this extension, can be found by opening the Visual Studio Command palette using `ctrl + shift + p` and searching for `FFVA`.
 
 ## Extension Settings
 
@@ -30,14 +57,14 @@ Super clean!
 
 ## Release Notes
 
-WIP: This extension is currently a work-in-progress and is not yet released.
-
-### 0.1.0
-
-Initial pre-release of ffva in it's initial functional state.
+- v0.0.1 This extension is unreleased.
 
 ## Following extension guidelines
 
 Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
 * [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+
+## License
+Copyright (c) 2024 Andrew Parrett. All rights reserved.
+Licensed under the [MIT](https://github.com/andyp-22/ffva/blob/main/LICENSE) License.
