@@ -9,16 +9,10 @@ Note: Release dates throughout follow the format `dd.MM.yyyy`.
 
 ## [Unreleased]
 
-### Added
-- v0.x.x
+## [v0.1.1] - 12.11.2024
 
 ### Changed
-- v0.x.x
-
-### Removed
-- v0.x.x
-
-
+- v0.1.1 Properly incremented version for patch release.
 
 ## [v0.1.0] - 12.11.2024
 
@@ -40,5 +34,6 @@ Note: Release dates throughout follow the format `dd.MM.yyyy`.
 
 ***
 
-[unreleased]: https://github.com/andyp-22/ffva/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/andyp-22/ffva/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/andyp-22/ffva/releases/tag/v0.1.1...v0.1.0
 [v0.1.0]: https://github.com/andyp-22/ffva/releases/tag/v0.1.0
