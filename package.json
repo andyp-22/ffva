@@ -1,7 +1,7 @@
 {
   "name": "ffva",
   "displayName": "FFVA",
-  "description": "Find and open files in workspace using custom-defined file name aliases.",
+  "description": "Find File Via Alias. Find and open files in a workspace using custom user-defined aliases.",
   "version": "0.0.1",
   "publisher": "andy-parrett",
   "engines": {
@@ -29,35 +29,35 @@
         "title": "FFVA",
         "properties": {
           "ffva.config.aliases": {
-            "title": "Find File Aliases",
-            "description": "Array of aliases and their corresponding associated files.",
+            "title": "File Aliases",
+            "description": "Array of items, each item representing an alias associated with a corresponding file.",
             "type": "array",
             "items": {
               "title": "Alias",
-              "description": "Array item representing an association between an alias and a file.",
+              "description": "An object representing an alias associated with a corresponding file in the workspace.",
               "type": "object",
               "propertyNames": true,
               "properties": {
                 "alias": {
-                  "title": "Alias name",
-                  "description": "The alias used to find and open the associated file.",
+                  "title": "Alias Name",
+                  "description": "The custom alias to associate with a file, used to open the corresponding file.",
                   "type": "string",
                   "maxLength": 12,
                   "uniqueItems": true
                 },
                 "uri": {
-                  "title": "File uri",
-                  "description": "The vscode.Uri object for the file associated with the alias.",
+                  "title": "File Uri",
+                  "description": "The uri, or path, to a file within the workspace to associate with the custom alias.",
                   "type": "object",
                   "properties": {
                     "fsPath": {
-                      "title": "File system path",
-                      "description": "String representing the corresponding file system path of the uri.",
+                      "title": "File System Path",
+                      "description": "The string value representation of the corresponding 'file system' path of the file uri (platform-specific, used to open the file).",
                       "type": "string"
                     },
                     "path": {
                       "title": "Path",
-                      "description": "String representing the path of the uri, used for displaying the path in the UI.",
+                      "description": "The string value representation of the corresponding 'path' segment of the file uri (mainly used for display the uri).",
                       "type": "string"
                     }
                   },
@@ -80,15 +80,15 @@
             "scope": "window"
           },
           "ffva.config.autoCleanOnFileDelete": {
-            "title": "Auto-Clean Aliases on File Delete",
-            "description": "Whether to automatically clean aliases when files are deleted.",
+            "title": "Auto-clean Aliases on File Delete",
+            "description": "Configures automatic clean-up of aliases on file deletes.",
             "type": "boolean",
             "default": true,
             "scope": "window"
           },
           "ffva.config.autoUpdateOnFileRename": {
-            "title": "Auto-Update Aliases on File Rename/Move",
-            "description": "Whether to automatically update aliases when files are renamed or moved.",
+            "title": "Auto-update Aliases on File Rename/Move",
+            "description": "Configures automatic updates of aliases on file rename or move.",
             "type": "boolean",
             "default": true,
             "scope": "window"
@@ -105,7 +105,7 @@
       {
         "category": "FFVA",
         "command": "extension.removeAlias",
-        "title": "Remove an existing alias."
+        "title": "Remove an existing alias for a file."
       },
       {
         "category": "FFVA",
@@ -118,14 +118,14 @@
         "title": "Purge all existing aliases for the workspace."
       },
       {
-        "category": "FFVA Configuration",
+        "category": "FFVA Config",
         "command": "extension.configAutoCleanOnFileDelete",
-        "title": "Enable or Disable auto-cleaning of aliases when files are deleted."
+        "title": "Enable or Disable automatic clean-up of aliases on file deletes."
       },
       {
-        "category": "FFVA Configuration",
+        "category": "FFVA Config",
         "command": "extension.configAutoUpdateOnFileRename",
-        "title": "Enable or Disable auto-updating of aliases when files are renamed or moved."
+        "title": "Enable or Disable automatic updates of aliases on file rename or move."
       }
     ],
     "keybindings": [
