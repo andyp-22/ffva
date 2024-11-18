@@ -16,8 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
@@ -38,8 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
@@ -52,11 +50,11 @@ jobs:
       - name: Run - Build
         run: npm run compile
 
-      - name: Create Package for Release
-        run: npx semantic-release --extends ./package.release.config.js
+      - run: npx semantic-release --extends ./package.release.config.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VSCE_TARGET: "universal"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -73,8 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
@@ -83,8 +80,8 @@ jobs:
 
       - uses: actions/download-artifact@v4
 
-      - if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        name: Create Release
+      - name: Create Release
+        if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: npx semantic-release --extends ./publish.release.config.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
