@@ -31,9 +31,6 @@ jobs:
   # Build Job
   build:
     needs: [test]
-    permissions:
-      contents: write
-      packages: write
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -70,9 +67,6 @@ jobs:
   # Release Job
   release:
     needs: [test, build]
-    permissions:
-      contents: write
-      packages: write
     strategy:
       matrix:
         os: [ubuntu-latest]

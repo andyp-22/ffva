@@ -14,6 +14,6 @@ export function setErrorStatus(message: string) {
 
 function statusTimeout() {
   return new Promise((resolve) => {
-    setTimeout(() => { resolve(true); }, 5000)
+    setTimeout(() => { resolve(true); }, 5000);
   });
 }
