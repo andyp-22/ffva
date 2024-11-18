@@ -82,8 +82,6 @@ jobs:
         run: npm ci
 
       - uses: actions/download-artifact@v4
-        with:
-          pattern: "*.vsix"
 
       - if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         name: Create Release

@@ -6,19 +6,25 @@ const config = {
     ...common.plugins,
     [
       "semantic-release-vsce", {
-        "packageVsix": false,
-        "publishPackagePath": "*.vsix"
+        packageVsix: false,
+        publishPackagePath: "*.vsix"
       }
     ],
     [
       "@semantic-release/git", {
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
     [
       "@semantic-release/github", {
-        "assets": "*.vsix",
-        "addReleases": "bottom"
+        assets: "*.vsix",
+        addReleases: "bottom"
+      }
+    ],
+    [
+      "@semantic-release/npm", {
+        npmPublish: false,
+        tarballDir: false
       }
     ]
   ]
