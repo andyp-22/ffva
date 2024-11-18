@@ -6,8 +6,7 @@ const config = {
     ...common.plugins,
     [
       "semantic-release-vsce", {
-        "packageVsix": true,
-        "publish": false, // Using semantic-release-stop-before-publish
+        packageVsix: true
       }
     ],
     "semantic-release-stop-before-publish"

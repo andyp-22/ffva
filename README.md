@@ -64,4 +64,4 @@ Release notes can be found in the [CHANGELOG.md](CHANGELOG.md) file.
 ## License
 Copyright (c) 2024 Andrew Parrett. All rights reserved.
 
-Licensed under the [MIT](https://github.com/andyp-22/ffva/blob/main/LICENSE) License.
+Licensed under the [MIT License](https://github.com/andyp-22/ffva/blob/main/LICENSE).
