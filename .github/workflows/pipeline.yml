@@ -2,46 +2,94 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
-  release:
-    types:
-      - created
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
-  build:
+  # Test Job
+  test:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      
       - uses: actions/checkout@v4
-      
-      # Install Node.js and Npm dependencies
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-      - name: Npm Install
-        run: npm install
 
-      # Run Build commands
-      - name: Run - Lint
-        run: npm run lint
-      - name: Run - Build
-        run: npm run compile
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Run - Test
         run: xvfb-run -a npm run test
 
-      # Conditionally publish the package automatically if release created
-      - name: Publish
-        if: success() && startsWith(github.ref, 'refs/tags/')
-        run: npm run publish
+
+  # Build Job
+  build:
+    needs: [test]
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run - Lint
+        run: npm run lint
+
+      - name: Run - Build
+        run: npm run compile
+
+      - name: Create Package for Release
+        run: npx semantic-release --extends ./package.release.config.js
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Upload VSIX Artifact
+          path: "*.vsix"
+
+
+  # Release Job
+  release:
+    needs: [test, build]
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Download VSIX Artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*.vsix"
+
+      - if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        name: Create Release
+        run: npx semantic-release --extends ./publish.release.config.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}

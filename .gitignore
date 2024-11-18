@@ -9,6 +9,7 @@ nupkg/
 out
 node_modules
 *.vsix
+*.zip
 
 # Rider
 .idea
