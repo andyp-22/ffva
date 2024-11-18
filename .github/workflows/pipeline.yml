@@ -31,6 +31,9 @@ jobs:
   # Build Job
   build:
     needs: [test]
+    permissions:
+      contents: write
+      packages: write
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -55,7 +58,7 @@ jobs:
       - name: Create Package for Release
         run: npx semantic-release --extends ./package.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.FFVA_SR_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - uses: actions/upload-artifact@v4
@@ -67,6 +70,9 @@ jobs:
   # Release Job
   release:
     needs: [test, build]
+    permissions:
+      contents: write
+      packages: write
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -91,5 +97,5 @@ jobs:
         name: Create Release
         run: npx semantic-release --extends ./publish.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.FFVA_SR_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
