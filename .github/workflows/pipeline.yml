@@ -39,15 +39,16 @@ jobs:
       # Use private GitHub App to generate token for semantic-release
       - name: 'Generate semantic-release Token'
         id: generate_token
-        uses: tibdex/github-app-token@v2.1.0
+        uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ secrets.SR_APP_ID }}
-          private_key: ${{ secrets.SR_APP_PK }}
+          app-id: ${{ secrets.SR_APP_ID }}
+          private-key: ${{ secrets.SR_APP_PK }}
 
       - name: 'Checkout Code'
         uses: actions/checkout@v4
         with:
           token: ${{ steps.generate_token.outputs.token }}
+          persist-credentials: false
 
       - name: 'Install Node.js'
         uses: actions/setup-node@v4
@@ -87,15 +88,16 @@ jobs:
       # Use private GitHub App to generate token for semantic-release
       - name: 'Generate semantic-release Token'
         id: generate_token
-        uses: tibdex/github-app-token@v2.1.0
+        uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ secrets.SR_APP_ID }}
-          private_key: ${{ secrets.SR_APP_PK }}
+          app-id: ${{ secrets.SR_APP_ID }}
+          private-key: ${{ secrets.SR_APP_PK }}
 
       - name: 'Checkout Code'
         uses: actions/checkout@v4
         with:
           token: ${{ steps.generate_token.outputs.token }}
+          persist-credentials: false
 
       - name: 'Install Node.js'
         uses: actions/setup-node@v4
