@@ -55,7 +55,7 @@ jobs:
       - name: Create Package for Release
         run: npx semantic-release --extends ./package.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FFVA_SR_PAT }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - uses: actions/upload-artifact@v4
@@ -91,5 +91,5 @@ jobs:
         name: Create Release
         run: npx semantic-release --extends ./publish.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FFVA_SR_PAT }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
