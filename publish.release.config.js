@@ -7,6 +7,7 @@ const config = {
     [
       "semantic-release-vsce", {
         packageVsix: false,
+        publish: true,
         publishPackagePath: "*.vsix"
       }
     ],
