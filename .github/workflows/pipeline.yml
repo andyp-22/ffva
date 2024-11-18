@@ -79,6 +79,8 @@ jobs:
         run: npm ci
 
       - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
 
       - name: Create Release
         if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
