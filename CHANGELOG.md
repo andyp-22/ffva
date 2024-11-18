@@ -1,3 +1,9 @@
+## [0.2.1](https://github.com/andyp-22/ffva/compare/v0.2.0...v0.2.1) (2024-11-18)
+
+### Bug Fixes
+
+* Fixes and updates to workflows and semantic-release. ([#15](https://github.com/andyp-22/ffva/issues/15)) ([15e65e9](https://github.com/andyp-22/ffva/commit/15e65e93b17e4ff2312be73e006332a79404aca7))
+
 ## [0.2.0](https://github.com/andyp-22/ffva/compare/v0.1.1...v0.2.0) (2024-11-18)
 
 ### Features
