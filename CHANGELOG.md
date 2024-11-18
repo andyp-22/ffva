@@ -1,3 +1,9 @@
+## [0.2.2](https://github.com/andyp-22/ffva/compare/v0.2.1...v0.2.2) (2024-11-18)
+
+### Bug Fixes
+
+* Trying more changes to enable publishing extension using semantic-release. ([#16](https://github.com/andyp-22/ffva/issues/16)) ([9ef38ef](https://github.com/andyp-22/ffva/commit/9ef38efa205e411a93c676743a716b6fa979dc4d))
+
 ## [0.2.1](https://github.com/andyp-22/ffva/compare/v0.2.0...v0.2.1) (2024-11-18)
 
 ### Bug Fixes
