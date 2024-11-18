@@ -23,8 +23,7 @@ const config = {
     ],
     [
       "@semantic-release/npm", {
-        npmPublish: false,
-        tarballDir: false
+        npmPublish: false
       }
     ]
   ]
