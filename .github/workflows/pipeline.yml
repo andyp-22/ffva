@@ -1,5 +1,4 @@
-name: CI
-
+name: 'CI - Build & Release'
 on:
   push:
     branches: [main]
@@ -14,16 +13,18 @@ jobs:
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - name: 'Checkout Code'
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: 'Install Node.js'
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
-      - name: Install Dependencies
+      - name: 'Install Dependencies'
         run: npm ci
 
-      - name: Run - Test
+      - name: 'Npm Run: test'
         run: xvfb-run -a npm run test
 
 
@@ -35,28 +36,43 @@ jobs:
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      # Use private GitHub App to generate token for semantic-release
+      - name: 'Generate semantic-release Token'
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SR_APP_ID }}
+          private-key: ${{ secrets.SR_APP_PK }}
 
-      - uses: actions/setup-node@v4
+      - name: 'Checkout Code'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+          persist-credentials: false
+
+      - name: 'Install Node.js'
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
-      - name: Install Dependencies
+      - name: 'Install Dependencies'
         run: npm ci
 
-      - name: Run - Lint
+      - name: 'Npm Run: lint'
         run: npm run lint
 
-      - name: Run - Build
+      - name: 'Npm Run: compile (build)'
         run: npm run compile
 
-      - run: npx semantic-release --extends ./package.release.config.js
+      - name: 'Build Package via semantic-release'
+        run: npx semantic-release --extends ./package.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
           VSCE_TARGET: "universal"
 
-      - uses: actions/upload-artifact@v4
+      - name: 'Upload Package Artifact'
+        uses: actions/upload-artifact@v4
         with:
           path: "*.vsix"
 
@@ -69,22 +85,36 @@ jobs:
         os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      # Use private GitHub App to generate token for semantic-release
+      - name: 'Generate semantic-release Token'
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SR_APP_ID }}
+          private-key: ${{ secrets.SR_APP_PK }}
 
-      - uses: actions/setup-node@v4
+      - name: 'Checkout Code'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+          persist-credentials: false
+
+      - name: 'Install Node.js'
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
-      - name: Install Dependencies
+      - name: 'Install Dependencies'
         run: npm ci
 
-      - uses: actions/download-artifact@v4
+      - name: 'Download Package Artifact'
+        uses: actions/download-artifact@v4
         with:
           merge-multiple: true
 
-      - name: Create Release
+      - name: 'Publish Release via semantic-release'
         if: github.event_name == 'push' || github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: npx semantic-release --extends ./publish.release.config.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
