@@ -1,14 +1,15 @@
 /*
  * Extension logger helper class which wraps patterns for creating consistent
- * console log outputs, for use inside event handlers and commands.
+ * console log outputs, for use inside of event handlers and commands.
  *
- * This is merely a convenience for me (the developer), so that all console logs
- * from my extension are consistently descriptive :)
+ * This logging helper class is largely a convenience to myself (the developer)
+ * 
+ *                                                                          :)
  */
 export class ExtensionLogger {
-  actionType: ActionTypes; // Indicates whether the instantiating function/method is a Command or EventHandler.
-  actionName: string; // The name of the Command or Event.
-  actionMethod: string; // The name of the function/method which instantiated this ExtensionLogger.
+  private actionType: ActionTypes; // The type of action being processed by the module which created this ExtensionLogger instance.
+  private actionName: string; // The name of the Command or Event being processed.
+  private actionMethod: string; // The name signature of the module which created this ExtensionLogger instance.
 
   constructor(
     actionType: ActionTypes,
@@ -35,6 +36,6 @@ export class ExtensionLogger {
 }
 
 export enum ActionTypes {
-  Command = "Command", // Used to identify functions/methods which process a command.
-  Handler = "EventHandler", // Used to identify functions/methods which handle an event.
+  Command = "Command", // Used to denote modules which process commands.
+  Handler = "EventHandler", // Used to denote modules which handle events.
 }

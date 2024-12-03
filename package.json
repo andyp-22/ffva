@@ -41,57 +41,6 @@
         "id": "ffva",
         "title": "FFVA",
         "properties": {
-          "ffva.config.aliases": {
-            "title": "File Aliases",
-            "description": "Array of items, each representing an alias associated with a corresponding file.",
-            "type": "array",
-            "items": {
-              "title": "Alias",
-              "description": "An object representing an alias associated with a corresponding file in the workspace.",
-              "type": "object",
-              "propertyNames": true,
-              "properties": {
-                "alias": {
-                  "title": "Alias Name",
-                  "description": "The custom alias to associate with a file, used to open the corresponding file.",
-                  "type": "string",
-                  "maxLength": 12,
-                  "uniqueItems": true
-                },
-                "uri": {
-                  "title": "File Uri",
-                  "description": "The uri, or path, to a file within the workspace to associate with the custom alias.",
-                  "type": "object",
-                  "properties": {
-                    "fsPath": {
-                      "title": "File System Path",
-                      "description": "The string value representation of the corresponding 'file system' path of the file uri (platform-specific, used to open the file).",
-                      "type": "string"
-                    },
-                    "path": {
-                      "title": "Path",
-                      "description": "The string value representation of the corresponding 'path' segment of the file uri (mainly used for display the uri).",
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "fsPath",
-                    "path"
-                  ],
-                  "additionalProperties": false
-                }
-              },
-              "required": [
-                "alias",
-                "uri"
-              ],
-              "additionalProperties": false
-            },
-            "readOnly": true,
-            "uniqueItems": true,
-            "default": [],
-            "scope": "window"
-          },
           "ffva.config.doAutoClean": {
             "title": "Auto-clean Aliases on File Delete",
             "description": "Configures automatic clean-up of aliases on file deletes.",
@@ -113,12 +62,12 @@
       {
         "category": "FFVA",
         "command": "extension.createAlias",
-        "title": "Create a new alias for a file."
+        "title": "Create a new alias for the current file."
       },
       {
         "category": "FFVA",
         "command": "extension.removeAlias",
-        "title": "Remove an existing alias for a file."
+        "title": "Remove an existing alias for the current workspace."
       },
       {
         "category": "FFVA",
@@ -128,17 +77,17 @@
       {
         "category": "FFVA",
         "command": "extension.purgeAliases",
-        "title": "Purge all existing aliases for the workspace."
+        "title": "Purge all existing aliases for the current workspace."
       },
       {
         "category": "FFVA Config",
         "command": "extension.configAutoClean",
-        "title": "Enable or Disable automatic clean-up of aliases on file delete."
+        "title": "Enable or Disable automatic alias clean-up on file delete."
       },
       {
         "category": "FFVA Config",
         "command": "extension.configAutoUpdate",
-        "title": "Enable or Disable automatic updates of aliases on file rename or move."
+        "title": "Enable or Disable automatic alias updates on file rename or move."
       }
     ],
     "keybindings": [
@@ -157,6 +106,7 @@
     ]
   },
   "scripts": {
+    "clean": "rimraf ./out",
     "package": "vsce package",
     "publish": "vsce publish",
     "compile": "tsc -p ./",
@@ -183,6 +133,7 @@
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "cross-spawn": "^7.0.5",
     "eslint": "^9.13.0",
+    "rimraf": "^6.0.1",
     "semantic-release": "^24.2.0",
     "semantic-release-stop-before-publish": "^1.0.0",
     "semantic-release-vsce": "^5.7.4",

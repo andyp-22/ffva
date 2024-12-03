@@ -48,7 +48,6 @@ All commands implemented by this extension, including those with shortcuts above
 ## Extension Settings
 This extension contributes the following settings through the `contributes.configuration` extension point:
 
-* `ffva.config.aliases`: An array of items, each representing an alias associated with a corresponding file.
 * `ffva.config.doAutoClean`: Enables or disables the automatic clean-up of aliases on file delete.
 * `ffva.config.doAutoUpdate`: Enables or disables the automatic update of aliases on file rename or move.
 
