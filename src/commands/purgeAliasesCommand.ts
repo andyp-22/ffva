@@ -28,14 +28,14 @@ export function purgeAliasesCommand() {
         // Verifying that the result is truthy and equals the confirmation phrase before proceeding.
         if (result === "Confirm") {
           state.purgeAliases();
-          statusItems.push(setInfoStatus("Successfully purged all aliases from configuration."));
+          statusItems.push(setInfoStatus("Successfully purged all aliases."));
         } else {
           logger.log("Confirmation unsuccessful. Aborting purge operation.");
         }
       }
     }
     catch (x) {
-      logger.log("An error occurred whilst trying to purge all aliases from configuration.", x);
+      logger.log("An error occurred whilst trying to purge all aliases from state.", x);
       statusItems.push(setErrorStatus("An error occurred whilst trying to purge all aliases."));
     }
     finally {

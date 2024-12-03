@@ -33,9 +33,10 @@ export function autoCleanHandler() {
               logger.log(`Removed alias: ${alias.name}`);
             }
           });
+          logger.log("Done!");
         }
         else {
-          logger.log("Nothing to clean up.");
+          logger.log("Nothing to process.");
         }
       }
       else {
@@ -44,7 +45,7 @@ export function autoCleanHandler() {
     }
     catch (x) {
       logger.log("An error occurred whilst trying to process the event.", x);
-      statusItems.push(setErrorStatus("An error occurred whilst trying to process the event"));
+      statusItems.push(setErrorStatus("An error occurred whilst trying to process the event."));
     }
     finally {
       logger.endExecutionLog();

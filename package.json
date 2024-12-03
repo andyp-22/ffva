@@ -67,27 +67,27 @@
       {
         "category": "FFVA",
         "command": "extension.removeAlias",
-        "title": "Remove an existing alias for the workspace."
+        "title": "Remove an existing alias for the current workspace."
       },
       {
         "category": "FFVA",
         "command": "extension.findFileViaAlias",
-        "title": "Find and open a file from the workspace, using an alias."
+        "title": "Find and open a file using an alias."
       },
       {
         "category": "FFVA",
         "command": "extension.purgeAliases",
-        "title": "Purge all existing aliases for the workspace."
+        "title": "Purge all existing aliases for the current workspace."
       },
       {
         "category": "FFVA Config",
         "command": "extension.configAutoClean",
-        "title": "Enable or Disable automatic clean-up of aliases on file delete."
+        "title": "Enable or Disable automatic alias clean-up on file delete."
       },
       {
         "category": "FFVA Config",
         "command": "extension.configAutoUpdate",
-        "title": "Enable or Disable automatic updates of aliases on file rename or move."
+        "title": "Enable or Disable automatic alias updates on file rename or move."
       }
     ],
     "keybindings": [

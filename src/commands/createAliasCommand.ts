@@ -36,8 +36,8 @@ export function createAliasCommand() {
           statusItems.push(setInfoStatus("Successfully created new alias!"));
         }
         else {
-          logger.log("No active document/text-editor found to create an alias for.");
-          statusItems.push(setErrorStatus("No active document/text-editor found; Please open the file you want to create an alias for, and try again."));
+          logger.log("No valid active document found to create an alias for.");
+          statusItems.push(setErrorStatus("No valid active document found; Please open a document you wish to create an alias for, and try again."));
         }
       }
     }

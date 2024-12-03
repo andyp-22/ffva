@@ -29,7 +29,7 @@ export function removeAliasCommand() {
       }
     }
     catch (x) {
-      logger.log("An error occurred whilst trying to remove an existing alias.", x);
+      logger.log("An error occurred whilst trying to remove an existing alias from state.", x);
       statusItems.push(setErrorStatus("An error occurred whilst trying to remove an existing alias."));
     }
     finally {
